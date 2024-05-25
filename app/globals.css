@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+* {
+  scroll-behavior: smooth;
+  scroll-snap-align: center;
+  scroll-margin-top: 50px;
+}
+.model-blur {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.model-blur2 {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+input {
+  -webkit-text-fill-color: black;
+  caret-color: black;
+  font-family: sans-serif;
+}
+
+.cursor {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 50%;
+  background: transparent;
+  pointer-events: none;
+  z-index: 111;
+  border: 2px solid #2b8761;
+  transition: all 0.2s ease-out;
+  animation: moveCursor1 0.5s infinite alternate;
+}
+
+.cursor::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: black;
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: 110;
+  border: 2px solid black;
+  transition: all 0.2s ease-out;
+}
+
+.expand {
+  background: transparent;
+  animation: moveCursor2 0.5s forwards;
+  border: 1px solid #000;
+}
+
+@keyframes moveCursor1 {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes moveCursor2 {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(2);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+.ctm_slider .swiper-slide {
+  @apply !h-auto;
+}
+.ctm_slider .swiper-button-prev,
+.ctm_slider .swiper-button-next {
+  @apply w-10 h-10 transition-all duration-300 ease-in-out border-2 border-black border-solid rounded-full backdrop-blur-sm bg-white/20 hover:border-black/20;
+}
+.ctm_slider .swiper-button-prev:after,
+.ctm_slider .swiper-button-next:after {
+  @apply text-xl text-black transition-all duration-300 ease-in-out hover:text-black/50;
+}
